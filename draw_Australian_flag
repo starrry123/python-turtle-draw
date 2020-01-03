@@ -1,0 +1,160 @@
+from turtle import *
+import turtle
+from math import sin,cos,atan,tan,pi
+#screensize(2400,1200)
+speed(speed=9)
+up()
+ht()
+    
+def rec(x,y,w,h,color):
+    fillcolor(color)
+
+    goto(x,y)#draw start from top left corner
+    begin_fill()
+    for i in range(2):
+        forward(w)
+        right(90)
+        forward(h)
+        right(90)
+    end_fill()
+    goto(0,0)
+    setheading(0)
+
+
+def draw_star(n,x,y,R,r,color):
+    d=2*pi/(2*n)
+    fillcolor(color)
+    begin_fill()
+    for i in range(n):
+        goto(x+R*sin(2*i*d),y+R*cos(2*i*d))
+        goto(x+r*sin((2*i+1)*d),y+r*cos((2*i+1)*d))
+
+    goto(x,R+y)
+    end_fill()
+
+
+def sp_cross1(w,h): #Saint Patrick's strips
+    b=0.1*h
+    d=atan(0.5)
+
+    sp_w=b/(3*sin(d))
+    sp_h=b/(3*cos(d))
+    sp_cross_xy1=[
+        (-w/2,h/2),(-w/2+2*h/6,2*h/6),((-w/2+2*(h/6-sp_h),2*h/6)),(-w/2,h/2-sp_h)
+        ]
+    sp_cross_xy2=[
+        (0,h/2),(-h/3,2*h/6),(-h/3-sp_w,2*h/6),(-sp_w,h/2)
+        ]
+    sp_cross_xy3=[
+        (0,0),(-h/3,h/6),(-h/3+sp_w,h/6),(0,sp_h)
+        ]
+    sp_cross_xy4=[
+        (-w/2,0),(-w/2+h/3,h/6),(-w/2+h/3+sp_w,h/6),(-w/2+sp_w,0)
+        ]
+
+    fillcolor("red")
+    begin_fill()
+    for i in range(4):
+        goto(sp_cross_xy1[i])
+    end_fill()
+    begin_fill()
+    for i in range(4):
+        goto(sp_cross_xy2[i])
+    end_fill()
+    begin_fill()
+    for i in range(4):
+        goto(sp_cross_xy3[i])
+    end_fill()
+    begin_fill()
+    for i in range(4):
+        goto(sp_cross_xy4[i])
+    end_fill()
+
+    
+
+def sp_cross(w,h): #Saint Patrick's strips
+    b=0.1*h
+    d=atan(0.5)
+
+    sp_w=b/(3*sin(d))
+    sp_h=b/(3*cos(d))
+    sp_cross_xy1=[
+        (-w/2,h/2),(-w/2+2*h/6,2*h/6),((-w/2+2*(h/6-sp_h),2*h/6)),(-w/2,h/2-sp_h),(-w/2,h/2)
+        ]
+    sp_cross_xy2=[
+        (0,h/2),(-h/3,2*h/6),(-h/3-sp_w,2*h/6),(-sp_w,h/2),(-w/2,h/2)
+        ]
+    sp_cross_xy3=[
+        (0,0),(-h/3,h/6),(-h/3+sp_w,h/6),(0,sp_h),(0,0)
+        ]
+    sp_cross_xy4=[
+        (-w/2,0),(-w/2+h/3,h/6),(-w/2+h/3+sp_w,h/6),(-w/2+sp_w,0),(-w/2,0)
+        ]
+
+   
+    fillcolor("red")
+    begin_fill()
+    for i in range(5):
+        goto(sp_cross_xy1[i])
+    end_fill()
+    begin_fill()
+    for i in range(5):
+        goto(sp_cross_xy2[i])
+    end_fill()
+    begin_fill()
+    for i in range(5):
+        goto(sp_cross_xy3[i])
+    end_fill()
+    begin_fill()
+    for i in range(5):
+        goto(sp_cross_xy4[i])
+    end_fill()
+
+    
+def sa_cross(w,h): #St Andrew's cross
+    b=0.1*h
+    d=atan(0.5)
+
+    sa_w=b/(2*sin(d))
+    sa_h=b/(2*cos(d))
+    sa_cross_xy1=[
+        (-w/2,h/2),(-w/2+sa_w,h/2),(0,sa_h),(0,0),(-sa_w,0),(-w/2,h/2-sa_h),(-w/2,h/2),
+        ]
+    sa_cross_xy2=[
+        (0,h/2),(0,h/2-sa_h),(-w/2+sa_w,0),(-w/2,0),(-w/2,sa_h),(-sa_w,h/2),(0,h/2)
+        ]
+    fillcolor("white")
+    begin_fill()
+    for i in range(7):
+        goto(sa_cross_xy1[i])
+    end_fill()
+   
+    begin_fill()
+    for i in range(7):
+        goto(sa_cross_xy2[i])
+    end_fill()
+    goto(0,0)
+
+
+
+w=600 # Define Flag Width
+h=300 # Define Flag Height
+
+
+rec(-0.5*w,0.5*h,w,h,"navy")
+rec(-0.5*w,h/3,0.5*w,h/6,"white")
+rec(-(h/12+w/4),0.5*h,h/6,0.5*h,"white")
+sa_cross(w,h) #St Andress cross
+sp_cross(w,h)#St patric cross
+rec(-0.5*w,0.3*h,0.5*w,0.05*w,"red")
+rec(-(w/4+h/20),0.5*h,0.05*w,0.5*h,"red")
+draw_star(7,-0.25*w,-0.25*h,3*w/40,w/30,"white")
+draw_star(7,w/8,h/16,h/14,2*h/63,"white")
+draw_star(7,w/4,h/3,h/14,2*h/63,"white")
+draw_star(7,w/4,-h/3,h/14,2*h/63,"white")
+draw_star(7,w/4+2*h/9,(1/15+1/16)*h,h/14,2*h/63,"white")
+draw_star(5,0.25*w+0.1*h,-h/24,h/24,h/54,"white")
+
+
+getcanvas().postscript(file="AU-accurate-flag.eps")
+done()
