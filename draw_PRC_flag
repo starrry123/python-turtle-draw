@@ -1,0 +1,76 @@
+#Draw flag of People's Republic of China
+
+from turtle import *
+import turtle
+from math import sin,cos,atan,tan,pi
+screensize(1000,1000)
+speed(speed=5)
+colormode(255)
+up()
+#ht()
+    
+def rec(x,y,w,h,color):
+    fillcolor(color)
+    goto(x,y)#draw from top left corner
+    begin_fill()
+    for i in range(2):
+        forward(w)
+        right(90)
+        forward(h)
+        right(90)
+    end_fill()
+    goto(x,y)
+    #setheading(0)
+
+
+def draw_star(n,x,y,R,r,color,d0): #draw N pointed star based on ID & OD
+    d=2*pi/(2*n)
+    fillcolor(color)
+    begin_fill()
+    for i in range(n):       
+        goto(x+R*sin(2*i*d-d0),y+R*cos(2*i*d-d0))
+        goto(x+r*sin((2*i+1)*d-d0),y+r*cos((2*i+1)*d-d0))
+    goto(x+R*sin(-d0),y+R*cos(-d0))
+    end_fill()
+##    goto(x,y)
+##    goto(x+R*sin((2*(n-1)*d)-d0),y+R*cos(2*(n-1)*d-d0))
+##    goto(x+w/6,y-h/4)
+
+def draw_center_star(x,y,R):
+    goto(x,y-R)
+    circle(R)
+
+def draw_center_band(x,y,R,r,color):
+    fillcolor(color)
+    begin_fill()
+    draw_center_star(x,y,R)
+    end_fill()
+    fillcolor("white")
+    begin_fill()
+    draw_center_star(x,y,r)
+    end_fill()
+    
+
+h=400
+w=1.5*h
+
+x=-w/2
+y=h/2
+R=w/10
+r=R/3
+bg_color=(222,41,16)
+star_color=(255,220,0)
+bg_blue=(0,0,149)
+bg_red=(254,0,0)
+bg_white=(255,255,255)
+
+#Draw PRC flag
+rec(x,y,w,h,bg_color)
+draw_star(5,x+w/6,y-h/4,R,r,star_color,0)
+draw_star(5,x+w/3,y-h/10,r,r/3,star_color,atan(3/5)+pi/2)
+draw_star(5,x+2*w/5,y-h/5,r,r/3,star_color,atan(1/7)+pi/2)
+draw_star(5,x+2*w/5,y-7*h/20,r,r/3,star_color,pi/2-atan(2/7))
+draw_star(5,x+w/3,y-9*h/20,r,r/3,star_color,pi/2-atan(4/5))
+#END FLAG
+
+done()
