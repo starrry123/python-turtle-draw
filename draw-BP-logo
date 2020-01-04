@@ -1,0 +1,33 @@
+from turtle import *
+speed(12)
+colormode(255)
+
+def draw_petal(radius,degree,color0):
+    color(color0)
+    for i in range(n):
+        begin_fill()
+        heading1 = heading()
+        circle(radius, degree)
+        left(180-degree)
+        circle(radius,degree)
+        setheading(heading1)
+        left(360/n)
+        end_fill()
+
+radius=200
+n=18 
+bp_color=["#009900","#99cc00","#ffff00","#ffffff"]
+
+for i in range(4):
+    draw_petal(radius,100-20*i,bp_color[i])
+
+up()
+goto(radius,1.3*radius)
+down()
+pencolor(bp_color[0])
+write("bp",font=("Univers",100,"normal"))
+hideturtle()
+
+t=Screen()
+t.exitonclick()
+
