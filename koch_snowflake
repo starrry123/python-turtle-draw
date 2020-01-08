@@ -1,0 +1,21 @@
+from turtle import *
+tracer(1000)
+
+def koch_snowflake(L,levels):
+    if levels==0:
+        forward(L)      
+    else:
+        for angle in [60,-120,60,0]:
+            koch_snowflake(L/3,levels-1)
+            left(angle)
+
+L=200
+color("#009bdf")
+
+begin_fill()
+goto(-L/2,-L/2)
+for i in [0,60,120,180,240,300,0]:
+    setheading(i)    
+    koch_snowflake(L,5)
+end_fill()
+
